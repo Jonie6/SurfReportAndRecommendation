@@ -1,0 +1,26 @@
+/**
+ * Keyboard class to handle user input from the keyboard.
+ */
+class Keyboard {
+
+    /**
+     * Reads a single word (string) from the keyboard input.
+     */
+    function String readWord() {
+        var String input;
+        let input = Keyboard.readLine(); // Reads a full line of input
+        return input; // Return the input as a string
+    }
+
+    /**
+     * Reads an integer from the keyboard input.
+     */
+    function int readInt() {
+        var String input;
+        var int result;
+
+        let input = Keyboard.readLine(); // Reads a full line of input
+        let result = String.toInt(input); // Converts the input to an integer
+        return result;
+    }
+}

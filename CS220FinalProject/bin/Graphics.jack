@@ -1,0 +1,9 @@
+/**
+ * Draws a simple wave graphic.
+ */
+method void drawWave() {
+    do Screen.clearScreen();
+    do Screen.drawRectangle(10, 10, 50, 20); // Example wave shape
+    do Screen.drawRectangle(20, 30, 60, 40); 
+    return;
+}

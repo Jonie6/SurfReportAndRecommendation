@@ -1,0 +1,37 @@
+/**
+ * Beach class to store information about a beach.
+ */
+class Beach {
+    field String name;
+    field String waveSize;    // small, average, tall
+    field String driveDistance; // <1 mile, <5 miles, >5 miles
+    field boolean hasFoodNearby;
+
+    /**
+     * Constructor to initialize a Beach object.
+     */
+    constructor Beach new(String name, String waveSize, String driveDistance, boolean hasFoodNearby) {
+        let this.name = name;
+        let this.waveSize = waveSize;
+        let this.driveDistance = driveDistance;
+        let this.hasFoodNearby = hasFoodNearby;
+        return this;
+    }
+
+    /**
+     * Accessor for the beach name.
+     */
+    method String getName() {
+        return this.name;
+    }
+
+    /**
+     * Checks if the beach matches the criteria.
+     */
+    method boolean matches(String wavePref, String drivePref, boolean foodPref) {
+        if ((this.waveSize = wavePref) & (this.driveDistance = drivePref) & (this.hasFoodNearby = foodPref)) {
+            return true;
+        }
+        return false;
+    }
+}

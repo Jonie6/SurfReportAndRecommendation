@@ -1,0 +1,86 @@
+/**
+ * Main class for surfer recommendation software.
+ */
+class Main {
+    field Array beachList;
+    field Output output;
+    field Screen screen;
+    field Keyboard keyboard;
+
+    /**
+     * Main function to initialize the program.
+     */
+    function void main() {
+        do Main.initializeBeaches();
+        do Main.runProgram();
+        return;
+    }
+
+    /**
+     * Initializes the list of beaches.
+     */
+    function void initializeBeaches() {
+        let beachList = Array.new(4); // Adjust for number of beaches
+        let beachList[0] = Beach.new("Ponto", "small", "<1 mile", false);
+        let beachList[1] = Beach.new("DStreet", "average", "<5 miles", true);
+        let beachList[2] = Beach.new("Swamis", "tall", ">5 miles", true);
+        let beachList[3] = Beach.new("Cardiff", "small", ">5 miles", false);
+        return;
+    }
+
+    /**
+     * Runs the main recommendation program.
+     */
+    function void runProgram() {
+        var String wavePref, drivePref;
+        var boolean foodPref;
+        var int temp;
+
+        // Ask for wave size preference
+        do Output.printString("Choose wave size (small/average/tall): ");
+        let wavePref = Keyboard.readWord();
+
+        // Ask for drive distance preference
+        do Output.printString("Choose drive distance (<1 mile/<5 miles/>5 miles): ");
+        let drivePref = Keyboard.readWord();
+
+        // Ask for temperature
+        do Output.printString("Enter air temperature in Fahrenheit: ");
+        let temp = Keyboard.readInt();
+        if (temp < 65) {
+            do Output.printString("Recommendation: Wear a wetsuit.\n");
+        } else {
+            do Output.printString("Recommendation: No wetsuit needed.\n");
+        }
+
+        // Ask about food preference
+        do Output.printString("Do you want food nearby? (yes/no): ");
+        let foodPref = (Keyboard.readWord() = "yes");
+
+        // Find matching beaches
+        do Main.recommendBeaches(wavePref, drivePref, foodPref);
+
+        return;
+    }
+
+    /**
+     * Finds and recommends beaches based on user input.
+     */
+    function void recommendBeaches(String wavePref, String drivePref, boolean foodPref) {
+        var int i;
+        var Beach beach;
+
+        do Output.printString("Recommended beaches:\n");
+
+        let i = 0;
+        while (i < beachList.length()) {
+            let beach = beachList[i];
+            if (beach.matches(wavePref, drivePref, foodPref)) {
+                do Output.printString(beach.getName());
+                do Output.printString("\n");
+            }
+            let i = i + 1;
+        }
+        return;
+    }
+}
